@@ -1,0 +1,23 @@
+mutation CreateReferral {
+  createReferral(input: {
+    siteName: "bar"
+    siteLink: "foo"
+    user: "foobar"
+  }) {
+    id
+    siteName
+    siteLink
+    owner
+    user
+  }
+}
+
+
+type Referral 
+  @model
+  @auth(rules: [{ allow: owner, operations: [read, update, delete] }]) {
+  id: ID!
+  siteName: String!
+  siteLink: String!
+  user: String!
+  }
